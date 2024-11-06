@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hi!!</h1>
+    <p>{{username}}</p>
+    
+    {{#if users}}
+    <h2>User List</h2>
+    <ul>
+        {{#each users}}
+            <li>Name: {{this.name}}, Age: {{this.age}}</li>
+        {{/each}}
+    </ul>
+    {{/if}}
+
+    {{#if files}}
+    <h2>Uploaded Images</h2>
+    <ul>
+        {{#each files}}
+            <li>
+                <p>File Name: {{this.originalName}}</p>
+                <img src="/uploads/{{this.filename}}" alt="{{this.originalName}}" style="width: 200px; height: auto;">
+                <p>Size: {{this.size}} bytes</p>
+            </li>
+        {{/each}}
+    </ul>
+    {{/if}}
+    
+    <div>
+        <h2>Upload a File</h2>
+        <form action="/profile" method="post" enctype="multipart/form-data">
+            <input type="file" name="avatar" />
+            <input type="submit" value="Upload" />
+        </form>
+    </div>
+</body>
+</html>
