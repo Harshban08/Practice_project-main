@@ -77,7 +77,7 @@ const loginUser = asyncHandler(async (req, res) => {
     // Create JWT token
     const token = jwt.sign(
         { userId: user._id, username: user.firstName },
-        process.env.JWT_SECRET,
+        process.env.PRIVATE_KEY,
         { expiresIn: "1h" }
     );
 

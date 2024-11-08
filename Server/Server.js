@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const connectDb = require("./config/dbConnection");
-const errorHandler = require("./middlewares/errorHandler");
+const errorHandler = require("./middleware/errorHandler");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
@@ -13,7 +13,7 @@ dotenv.config();
 connectDb(); // Connect to the database
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 5000 || 3000;
 
 // Set up Handlebars as the view engine
 app.set('view engine', 'hbs');
@@ -51,6 +51,9 @@ app.get("/home", async (req, res) => {
         files: files 
     });
 });
+
+app.use("/api/register", require("./routes/userRoutes")); // Registration route
+app.use("/api/login", require("./routes/userRoutes")); // Login route
 
 // Route to handle file upload and save metadata in MongoDB
 app.post('/profile', upload.single('avatar'), async (req, res) => {
