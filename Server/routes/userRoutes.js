@@ -1,7 +1,7 @@
 // routes/userRoutes.js
 const express = require('express');
 const {generateToken,validateJwtToken} = require('../middleware/jwtmiddlewaare'); // Assuming this is your JWT middleware
-const { registerUser, loginUser } = require('../controllers/userController'); // Assuming controllers for user actions
+const { registerUser, loginUser, myAccount } = require('../controllers/userController'); // Assuming controllers for user actions
 
 const router = express.Router();
 
@@ -10,5 +10,7 @@ router.post("/register", registerUser);
 
 // Route to login a user
 router.post("/login",loginUser);
+
+router.get("/myAccount", validateJwtToken ,myAccount);
 
 module.exports = router;

@@ -52,8 +52,8 @@ app.get("/home", async (req, res) => {
     });
 });
 
-app.use("/api/register", require("./routes/userRoutes")); // Registration route
-app.use("/api/login", require("./routes/userRoutes")); // Login route
+app.use("/api/user", require("./routes/userRoutes")); // Registration route
+
 
 // Route to handle file upload and save metadata in MongoDB
 app.post('/profile', upload.single('avatar'), async (req, res) => {
@@ -76,7 +76,15 @@ app.post('/profile', upload.single('avatar'), async (req, res) => {
     }
 });
 
-
+// app.get("/myAccount", async (req, res) => {
+//     // Fetch all uploaded files from MongoDB
+//     const files = await File.find();
+//     res.render("myAccount", {
+//         // username: "Harsh",
+//         // users: [{ name: "John Doe", age: 30 }, { name: "Jane Smith", age: 25 }],
+//         // files: files 
+//     });
+// });
 
 // Error handling middleware
 app.use(errorHandler);
